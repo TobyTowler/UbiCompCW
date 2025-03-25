@@ -100,15 +100,18 @@ def extract_wifi_location_features(fileName):
 
 if __name__ == "__main__":
     # Change the file name
-    fileName = "./a1_990004889537019.txt"
+    # fileName = "./a1_990004889537019.txt"
+    fileName = "./both.txt"
 
-    # Each row of "features" contains scan results for each wifi scan,
+    # ''Each row of '"features" contains scan result each wifi scan,
     # and each row of "labels" contains scan name for each wifi scan.
 
     features, labels, label_names = extract_wifi_location_features(fileName)
 
     # Plot the histogram of wifi hotspot signal strengh.
     # You can comment it out if you don't want the plot to be shown.
+    # np.set_printoptions(threshold=np.inf)
+    # print(features)
     plot_wifi_hotspot_signal_strengths(features, labels, label_names)
 
     # -100 dBm means no signal at all
@@ -117,6 +120,8 @@ if __name__ == "__main__":
     # YOUR CODE FOR 'TO DO 2' WILL GO HERE
     # Compute the cosine similarity matrix of your own wifi signal strength and save the matrix as similarity_matrix
     ####################################
+
+    similarity_matrix = cosine_similarity(features, features)
 
     ####################################
     plot_cosine_similarity(similarity_matrix, labels)
